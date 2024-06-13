@@ -7,4 +7,4 @@ git@github.com:bismarckpm/DSW_SeccionB_GrupoF.git
 via CLI:
 gh repo clone bismarckpm/DSW_SeccionB_GrupoF
 
-Contexto: fui participante en el repositorio original, solo que este es privado, publique este repositorio para mostrarlo entre mis proyectos destacados.
+Contexto: fui participante en el repositorio original, solo que este es privado y lo creo otra persona, publique este repositorio para mostrarlo entre mis proyectos destacados.
