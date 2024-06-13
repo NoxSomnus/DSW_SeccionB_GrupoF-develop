@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UCABPagaloTodoMS.Application.Exceptions
+{
+    public class NotByConciliationPaymentException : Exception
+    {
+        public NotByConciliationPaymentException(string message) : base(message)
+        {
+        }
+
+        public NotByConciliationPaymentException(string message, Exception exception) : base(message, exception)
+        {
+        }
+
+    }
+}

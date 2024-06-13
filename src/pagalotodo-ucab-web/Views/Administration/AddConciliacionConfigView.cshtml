@@ -1,0 +1,75 @@
+﻿@model UCABPagaloTodoWeb.Models.AddConciliationFileConfigurationViewModel
+@{
+    ViewData["Title"] = "Agregar Configuración de Conciliación";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" asp-action="SaveConciliationConfigView">
+    <input type="hidden" asp-for="ProviderId" />
+    <input type="hidden" asp-for="ServiceId" />
+
+    <h3>Información del Usuario</h3>
+
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includeDni" />
+            <label class="form-check-label" asp-for="includeDni">Incluir DNI</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includeName" />
+            <label class="form-check-label" asp-for="includeName">Incluir Nombre</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includeLastname" />
+            <label class="form-check-label" asp-for="includeLastname">Incluir Apellido</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includeUsername" />
+            <label class="form-check-label" asp-for="includeUsername">Incluir Nombre de Usuario</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includeEmail" />
+            <label class="form-check-label" asp-for="includeEmail">Incluir Correo Electrónico</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includePhoneNumber" />
+            <label class="form-check-label" asp-for="includePhoneNumber">Incluir Número de Teléfono</label>
+        </div>
+    </div>
+
+    <h3>Información de la Factura</h3>
+
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includeAmount" />
+            <label class="form-check-label" asp-for="includeAmount">Incluir Monto</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includeBillDate" />
+            <label class="form-check-label" asp-for="includeBillDate">Incluir Fecha de Factura</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" asp-for="includeContractnumber" />
+            <label class="form-check-label" asp-for="includeContractnumber">Incluir Número de Contrato</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </div>
+</form>

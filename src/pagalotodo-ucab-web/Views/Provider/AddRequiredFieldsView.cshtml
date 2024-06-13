@@ -1,0 +1,133 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Registered_New_RequiredFieldsModel
+
+@{
+    ViewData["Title"] = "Añadir Configuracion a Metodo de Pago";
+    Layout = "~/Views/Shared/_ProviderLayout.cshtml";
+}
+<head>
+    <style>
+        div {
+            display: inline-block;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<h2>Campos Registrados</h2>
+@if (Model.RegisteredFields != null && Model.RegisteredFields.Any())
+{
+    <table>
+        <tr>
+            <th>Nombre del campo</th>
+            <th>Permite Numeros</th>
+            <th>Permite Letras</th>
+            <th>Longitud</th>
+        </tr>
+        @foreach (var field in Model.RegisteredFields)
+        {
+            <tr>
+                <td>@field.FieldName</td>
+                <td>@field.isNumber</td>
+                <td>@field.isString</td>
+                <td>@field.Length</td>
+            </tr>
+        }
+    </table>
+}
+
+<h2>New Fields</h2>
+
+<form id="new-fields-form" asp-controller="PaymentOption" asp-action="AddRequiredFieldsAction" method="post">
+    <input type="hidden" name="paymentOptionId" value="@Model.PaymentOptionId" />
+    <div id="new-fields-container">
+        @if (Model.NewFields != null)
+        {
+            @foreach (var field in Model.NewFields)
+            {                
+                <div>
+                    <label>Nombre del campo:</label>
+                    <input type="text" name="NewFields.Index" value="@Model.NewFields.IndexOf(field)" hidden />
+                    <input type="text" name="NewFields[@Model.NewFields.IndexOf(field)].FieldName" value="@field.FieldName" />
+                </div>
+                <div>
+                    <label>Permite Numeros:</label>
+                    <input type="checkbox" name="NewFields[@Model.NewFields.IndexOf(field)].isNumber" value="true" @(field.isNumber.HasValue && field.isNumber.Value ? "checked" : "") />
+                </div>
+                <div>
+                    <label>Permite Letras:</label>
+                    <input type="checkbox" name="NewFields[@Model.NewFields.IndexOf(field)].isString" value="true" @(field.isString.HasValue && field.isString.Value ? "checked" : "") />
+                </div>
+                <div>
+                    <label>Longitud del campo:</label>
+                    <input type="text" name="NewFields[@Model.NewFields.IndexOf(field)].Length" value="@field.Length" />
+                </div>
+            }
+        }
+    </div>
+
+    <button type="submit" form="new-fields-form">Guardar Configuracion</button>
+</form>
+
+<button id="add-field-button">Añadir Campo</button>
+
+@section scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var newFieldsContainer = $('#new-fields-container');
+            var addFieldButton = $('#add-field-button');
+
+            addFieldButton.click(function () {
+                var fieldIndex = newFieldsContainer.children().length;
+
+                var fieldDiv = $('<div/>');
+
+                var fieldNameLabel = $('<label/>', {
+                    text: 'Nombre del Campo:'
+                });
+                var fieldNameInput = $('<input/>', {
+                    type: 'text',
+                    name: 'NewFields[' + fieldIndex + '].FieldName',
+                    placeholder: 'Nombre del Campo'
+                });
+
+                var isNumberLabel = $('<label/>', {
+                    text: 'Permite Números:'
+                });
+                var isNumberInput = $('<input/>', {
+                    type: 'checkbox',
+                    name: 'NewFields[' + fieldIndex + '].isNumber',
+                    value: 'true'
+                });
+
+                var isStringLabel = $('<label/>', {
+                    text: 'Permite Letras:'
+                });
+                var isStringInput = $('<input/>', {
+                    type: 'checkbox',
+                    name: 'NewFields[' + fieldIndex + '].isString',
+                    value: 'true'
+                });
+
+                var lengthLabel = $('<label/>', {
+                    text: 'Longitud:'
+                });
+                var lengthInput = $('<input/>', {
+                    type: 'text',
+                    name: 'NewFields[' + fieldIndex + '].Length',
+                    placeholder: 'Longitud'
+                });
+
+                fieldDiv.append(fieldNameLabel).append(fieldNameInput);
+                fieldDiv.append(isNumberLabel).append(isNumberInput);
+                fieldDiv.append(isStringLabel).append(isStringInput);
+                fieldDiv.append(lengthLabel).append(lengthInput);
+
+                newFieldsContainer.append(fieldDiv);
+            });
+        });
+    </script>
+}

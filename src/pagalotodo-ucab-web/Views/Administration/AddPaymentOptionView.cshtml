@@ -1,0 +1,34 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Agregar Opcion de pago Page";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+}
+@model AddPaymentOptionModel
+
+
+<h2>Agregar opción de pago</h2>
+
+<form asp-action="AddPaymentOptionAction" asp-controller="PaymentOption"  method="post">
+    <div class="form-group">
+        <label for="ServiceId">ID de servicio:</label>
+        <input type="hidden" class="form-control" id="ServiceId" name="ServiceId" value="@Model.ServiceId" />
+    </div>
+    <div class="form-group">
+        <label for="Nombre">Nombre:</label>
+        <input type="text" class="form-control" id="Nombre" name="Nombre" value="@Model.Nombre" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Status">Estado:</label>
+        <select class="form-control" id="Status" name="Status">
+            <option value="Activo" selected="@Model.Status == " Activo"">Activo</option>
+            <option value="Inactivo" selected="@Model.Status == " Inactivo"">Inactivo</option>
+            <option value="Proximamente" selected="@Model.Status == " Proximamente"">Proximamente</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+</form>
+

@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace UCABPagaloTodoMS.Application.Exceptions
+{
+    public class PaymentOptionNotFoundException: Exception
+    {
+        public PaymentOptionNotFoundException(string mensaje) : base(mensaje)
+        {
+        }
+        public PaymentOptionNotFoundException(string mensaje, Exception excepcion) : base(mensaje, excepcion)
+        {
+        }
+    }
+}

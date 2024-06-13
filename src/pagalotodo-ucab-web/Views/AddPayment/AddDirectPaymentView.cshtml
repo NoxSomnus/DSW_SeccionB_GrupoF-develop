@@ -1,0 +1,37 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@{
+    ViewData["Title"] = "Pagar Servicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AddPaymentModel
+
+<form asp-action="AddDirectPaymentView" asp-controller="AddPayment" method="post">
+    <div>
+        <input type="hidden" id="_ServiceId" name="_ServiceId" value="@Model.ServiceId" />
+    </div>
+    <div>
+        <input type="hidden" id="_UserId" name="_UserId" value="@Model.UserId"/>
+    </div>
+    <div>
+        <input type="hidden" id="_OptionId" name="_OptionId" value="@Model.OptionId"/>
+    </div>
+    <div>
+        @for (int i = 0; i < Model.RequiredFields.Count; i++)
+        {
+            var option = Model.RequiredFields[i];
+            <label>@option.FieldName</label>
+            <input type="text" id="_FieldId" name="RequiredFields[@i].Content" value="@option.Content" />
+        }
+    </div>
+    <div>
+        <<label for="amount">Monto:</label>
+        <input type="number" id="_Amount" name="_Amount" step="0.01" />
+    </div>
+        <button type="submit">Pagar</button>
+</form>
